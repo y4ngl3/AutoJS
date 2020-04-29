@@ -22,9 +22,7 @@ sleep(2000);
 text("时评").findOne().parent().click();
 sleep(2000);
 //获取文章列表，一般length=7
-//var articles = id("general_card_title_id").depth(5).find();
-//console.show();
-var articles = className("android.widget.FrameLayout").depth(4).find();
+var articles = id("general_card_title_id").depth(5).find();
 if (!articles.empty()) {
     //循环阅读文章
     for (var i = 1; i < articles.length; i++) {
@@ -83,12 +81,8 @@ desc('电视台').findOne().click();
 sleep(2000);
 text('联播频道').findOne().parent().click();
 sleep(2000);
-//swipe(560, 1900, 560, 1400, 800);
-//sleep(2000);
 //获取视频列表，一般length=6
 var videos = text('中央广播电视总台').find();
-//console.show();
-//log(device.width, device.height, videos.length, videos);
 //循环看视频
 for (var i = 0; i < videos.length; i++) {
 
@@ -114,7 +108,3 @@ desc("学习").findOne().click();
 sleep(2000);
 home();
 exit();
-//desc("学习").findOne().click();
-//sleep(2000);
-//home();
-//sleep(2000);
