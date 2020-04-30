@@ -85,7 +85,6 @@ sleep(2000);
 var videos = text('中央广播电视总台').find();
 //循环看视频
 for (var i = 0; i < videos.length; i++) {
-
     //点击某一篇视频
     if (videos[i].parent() == null)
         continue;
@@ -97,9 +96,6 @@ for (var i = 0; i < videos.length; i++) {
     //className("android.widget.ImageView").depth(3).drawingOrder(4).findOnce().click();
     back();
     sleep(2000);
-
-    //swipe(560, 1900, 560, 1800, 800);
-    //log(i);
     //强制最多看11个
     if (i > 10) break;
 }
