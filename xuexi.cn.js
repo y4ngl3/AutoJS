@@ -25,7 +25,7 @@ sleep(2000);
 var articles = id("general_card_title_id").depth(5).find();
 if (!articles.empty()) {
     //循环阅读文章
-    for (var i = 1; i < articles.length; i++) {
+    for (var i = 0; i < articles.length; i++) {
         //点击某一篇文章
         if (articles[i] === null)
             continue;
