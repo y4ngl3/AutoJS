@@ -1,4 +1,4 @@
-//软件版本：Auto.Js v4.1.1  学习强国APP v2.11.1
+//软件版本：Auto.Js v4.1.1  学习强国APP v2.13.0
 //学习强国手机自动点击脚本，自动学习30分 
 //仅限安卓手机，需设置无障碍服务程序为Auto.js并开启。
 //使用稳定流畅的wifi，学习强国添加 “时评” 和 “山东” 频道（原因是时评每日更新最频繁，默认就有）
@@ -23,16 +23,21 @@ text("时评").findOne().parent().click();
 sleep(2000);
 //获取文章列表，一般length=7
 var articles = id("general_card_title_id").depth(5).find();
+//console.show();
+//log(articles)
+//var articles = className("android.widget.FrameLayout").clickable().depth(4).untilFind();
 if (!articles.empty()) {
     //循环阅读文章
-    for (var i = 0; i < articles.length; i++) {
+    for (var i = 1; i < articles.length; i++) {
         //点击某一篇文章
-        if (articles[i] === null)
+        try {
+            articles[i].parent().click();
+        } catch (e) {
             continue;
-        articles[i].click();
+        }
         //文章学习时长
         sleep(1000 * 120);
-        if (i < 0) {
+        if (i < 3) {
             //获取评论框、收藏框、转发框
             var pl, sc, zf;
             pl = className("android.widget.TextView").depth(2).drawingOrder(7).findOne();
@@ -62,11 +67,11 @@ if (!articles.empty()) {
         //返回文章列表
         //className("android.widget.ImageView").depth(2).drawingOrder(3).findOne().click();
         back();
+        sleep(2000);
         //强制最多读11篇
         if (i > 10) break;
     }
 }
-sleep(2000);
 //点击本地频道
 text("山东").depth(3).findOne().parent().click();
 sleep(2000);
@@ -76,22 +81,27 @@ sleep(2000);
 //className("android.widget.ImageView").depth(3).drawingOrder(21).findOne().click();
 back();
 sleep(2000);
-///开始点击电视台-联播频道栏目下的视频
+//开始点击电视台-联播频道栏目下的视频
 desc('电视台').findOne().click();
 sleep(2000);
 text('联播频道').findOne().parent().click();
 sleep(2000);
+//swipe(560, 1900, 560, 1400, 800);
+//sleep(2000);
 //获取视频列表，一般length=6
 var videos = text('中央广播电视总台').find();
+//console.show();
+//log(device.width, device.height, videos.length, videos);
 //循环看视频
 for (var i = 0; i < videos.length; i++) {
     //点击某一篇视频
-    if (videos[i].parent() == null)
+    try {
+        videos[i].parent().click();
+    } catch (e) {
         continue;
-    videos[i].parent().click();
+    }
     //视频学习时长
     sleep(1000 * 180);
-    //最后一篇视频总是点不到，为啥？
     //点击返回框
     //className("android.widget.ImageView").depth(3).drawingOrder(4).findOnce().click();
     back();
